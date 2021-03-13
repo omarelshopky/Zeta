@@ -5,7 +5,7 @@ A gesture controlled car designed with ardiuno nano
 
 - Programmed to move according to hand movement, by using C & Arduino IDE.
 
-- To see Hardware Components click here [V1 Components]()
+- To see Hardware Components click here [V1 Components](https://github.com/omarhesham2/Zeta/blob/main/V1/README.md)
 
 - You can see the project in [Video]()
 
