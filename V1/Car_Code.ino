@@ -78,73 +78,47 @@ void loop()
     //Forward
     if (data[0] <= 18)
     {
-      digitalWrite(MOT1FORWARD,1);
-      digitalWrite(MOT1BACKWARD,0);
-      digitalWrite(MOT2FORWARD,1);
-      digitalWrite(MOT2BACKWARD,0);
-      analogWrite(ENA,255);
-      analogWrite(ENB,255);
+      moveMotor(1, 0, 1, 0, 255, 255);
     }
     //Backward
     if (data[0] >= 40)
     {
-      digitalWrite(MOT1FORWARD,0);
-      digitalWrite(MOT1BACKWARD,1);
-      digitalWrite(MOT2FORWARD,0);
-      digitalWrite(MOT2BACKWARD,1);
-      analogWrite(ENA,255);
-      analogWrite(ENB,255);
+      moveMotor(0, 1, 0, 1, 255, 255);
     }
     //Turn Right
     if (data[1] < 48 && data[1] > 17)
     {
-      digitalWrite(MOT1FORWARD,1);
-      digitalWrite(MOT1BACKWARD,0);
-      digitalWrite(MOT2FORWARD,0);
-      digitalWrite(MOT2BACKWARD,0);
-      analogWrite(ENA,255);
-      analogWrite(ENB,255);
+      moveMotor(1,0,0,0,255,255);
     }
     //Turn Lift
     if (data[1] > 74 && data[1] < 95)
     {
-      digitalWrite(MOT1FORWARD,0);
-      digitalWrite(MOT1BACKWARD,0);
-      digitalWrite(MOT2FORWARD,1);
-      digitalWrite(MOT2BACKWARD,0);
-      analogWrite(ENA,255);
-      analogWrite(ENB,255);
+      moveMotor(0,0,1,0,255,255);
     }
     //Spin Right
     if (data[1] <= 17)
     {
-      digitalWrite(MOT1FORWARD,1);
-      digitalWrite(MOT1BACKWARD,0);
-      digitalWrite(MOT2FORWARD,0);
-      digitalWrite(MOT2BACKWARD,1);
-      analogWrite(ENA,255);
-      analogWrite(ENB,255);
+      moveMotor(1, 0, 0, 1, 255, 255);
     }
     //Spin Lift
     if (data[1] >= 95)
     {
-      digitalWrite(MOT1FORWARD,0);
-      digitalWrite(MOT1BACKWARD,1);
-      digitalWrite(MOT2FORWARD,1);
-      digitalWrite(MOT2BACKWARD,0);
-      analogWrite(ENA,255);
-      analogWrite(ENB,255);
+      moveMotor(0, 1, 1, 0, 255, 255);
     }
     //Stop
     if (data[0] >= 18 && data[0] <= 40 && data[1] <= 74 && data[1] >= 48)
     {
-      digitalWrite(MOT1FORWARD,0);
-      digitalWrite(MOT1BACKWARD,0);
-      digitalWrite(MOT2FORWARD,0);
-      digitalWrite(MOT2BACKWARD,0);
-      analogWrite(ENA,0);
-      analogWrite(ENB,0);
+      moveMotor(0, 0, 0, 0, 0, 0);
     }
-    
   }
+}
+
+
+void moveMotor(int m11, int m12, int m21, int m22, int en1, int en2) {
+  digitalWrite(MOT1FORWARD,m11);
+  digitalWrite(MOT1BACKWARD,m12);
+  digitalWrite(MOT2FORWARD,m21);
+  digitalWrite(MOT2BACKWARD,m22);
+  analogWrite(ENA,en1);
+  analogWrite(ENB,en2);
 }
